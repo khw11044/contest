@@ -572,7 +572,7 @@ df.head()
 
 $\text{A격자 00시간의 전력기상지수} = \frac{A격자 00시각의 전력수요 (또는 예상 전력수요)}{A격자 해당년도 전시간 평균 전력수요}$
 
-$\text{elec}_{i} = \frac{\text{(sum load)}_{i}}{\text{(n mean load)}_{i-1}}$
+$\text{elec} = \frac{\text{sum load}}{\text{n mean load}}$
 
 ### **활용법**
 
@@ -584,7 +584,7 @@ $\text{elec}_{i} = \frac{\text{(sum load)}_{i}}{\text{(n mean load)}_{i-1}}$
 - 당일 최대수요는 전일대비 125/100 = 1.25배 (25%) 증가를 예상해 활용 
 
 
-$\text{당일 최대수요 증감소율}_{i} = \frac{\text{당일 최고 전력기상지수}(\text{max}(elec_{i}))}{\text{전일 최고 전력기상지수}(\text{max}(elec_{i-1}))}$
+$$\text{당일 최대수요 증감소율}_{i} = \frac{\text{당일 최고 전력기상지수}(\text{max}(elec_{i}))}{\text{전일 최고 전력기상지수}(\text{max}(elec_{i-1}))}$$
 
 - elec: 전력기상지수 
 - sum_qctr: 계약전력합계
