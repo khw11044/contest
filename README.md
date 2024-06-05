@@ -572,7 +572,7 @@ df.head()
 
 $\text{A격자 00시간의 전력기상지수} = \frac{A격자 00시각의 전력수요 (또는 예상 전력수요)}{A격자 해당년도 전시간 평균 전력수요}$
 
-$x_{i}$
+$\text{x}_{i}$
 
 $\text{elec} = \frac{\text{sum load}}{\text{n mean load}}$
 
