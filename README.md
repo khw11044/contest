@@ -576,7 +576,7 @@ $\text{elec}_{i} = \frac{\text{sum load}_{i}}{text{n mean load}_{i-1}}$
 
 $\text{elec}_{i} = \frac{\text{sum load}_{i}}{\text{n mean load}_{i-1}}$
 
-$\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_{i-1}}$
+$\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_j}$
 
 
 ### **활용법**
