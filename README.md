@@ -574,7 +574,7 @@ $\text{A격자 00시간의 전력기상지수} = \frac{A격자 00시각의 전�
 
 $\text{elec}_{i} = \frac{1}{2}$
 
-$\text{elec}_{i} = \frac{\text{(sum load)}_{i}}{\text{(n mean load)}_{i-1}}$
+$\text{elec}_{i} = \text{sum load}_{i} \text{n mean load}_{i-1}$
 
 ### **활용법**
 
