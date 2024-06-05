@@ -572,10 +572,6 @@ df.head()
 
 $\text{A격자 00시간의 전력기상지수} = \frac{A격자 00시각의 전력수요 (또는 예상 전력수요)}{A격자 해당년도 전시간 평균 전력수요}$
 
-$\text{elec}_{i} = \frac{\text{sum load}_{i}}{text{n mean load}_{i-1}}$
-
-$\text{elec}_{i} = \frac{\text{sum load}_{i}}{\text{n mean load}_{i-1}}$
-
 $\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_j}$
 
 
@@ -584,12 +580,12 @@ $\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_j}$
 전일 또는 지난주 대비 지수의 증감비율을 통해 전력수요 변화량 예상 
 
 **예시)** 
-- 전일 최고 전력기상지수가 100, 
-- 당일 최고 전력기상지수가 125,
-- 당일 최대수요는 전일대비 125/100 = 1.25배 (25%) 증가를 예상해 활용 
+- 전일(j) 최고 전력기상지수가 100, 
+- 당일(i) 최고 전력기상지수가 125,
+- 당일(i) 최대수요는 전일대비 125/100 = 1.25배 (25%) 증가를 예상해 활용 
 
 
-$\text{당일 최대수요 증감소율}_{i} = \frac{\text{당일 최고 전력기상지수}(\text{max}(elec_{i}))}{\text{전일 최고 전력기상지수}(\text{max}(elec_{i-1}))}$
+$\text{당일 최대수요 증감소율}_{i} = \frac{\text{당일 최고 전력기상지수}(\text{max}(elec_i))}{\text{전일 최고 전력기상지수}(\text{max}(elec_j))}$
 
 - elec: 전력기상지수 
 - sum_qctr: 계약전력합계
@@ -600,7 +596,7 @@ $\text{당일 최대수요 증감소율}_{i} = \frac{\text{당일 최고 전력�
 ### **검증 데이터**
 **검증 데이터**는 전력기상지수를 산출할 수 있는 변수인 sum_qctr(계약전력합계), n(공동주택 수), sum_load(전력수요 합계), n_mean_load(전력부하량 평균)를 제외하고 제공 
 
-$\text{elec}_{i} = \frac{\text{(sum load)}_{i}}{\text{(n mean load)}_{i-1}}$
+$\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_j}$
 
 
 ## **목표**
