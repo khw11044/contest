@@ -572,32 +572,35 @@ df.head()
 
 $\text{A격자 00시간의 전력기상지수} = \frac{A격자 00시각의 전력수요 (또는 예상 전력수요)}{A격자 해당년도 전시간 평균 전력수요}$
 
-$\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_j}$
-
+$\text{elec}_{i} = \frac{\text{(sum load)}_{i}}{\text{(All mean load for a year)}}$
 
 ### **활용법**
 
 전일 또는 지난주 대비 지수의 증감비율을 통해 전력수요 변화량 예상 
 
 **예시)** 
-- 전일(j) 최고 전력기상지수가 100, 
-- 당일(i) 최고 전력기상지수가 125,
-- 당일(i) 최대수요는 전일대비 125/100 = 1.25배 (25%) 증가를 예상해 활용 
+- 전일 최고 전력기상지수가 100, 
+- 당일 최고 전력기상지수가 125,
+- 당일 최대수요는 전일대비 125/100 = 1.25배 (25%) 증가를 예상해 활용 
 
 
-$\text{당일 최대수요 증감소율}_{i} = \frac{\text{당일 최고 전력기상지수}(\text{max}(elec_i))}{\text{전일 최고 전력기상지수}(\text{max}(elec_j))}$
+$\text{당일 최대수요 증감소율}_{i} = \frac{\text{당일 최고 전력기상지수}(\text{max}(elec_{i}))}{\text{전일 최고 전력기상지수}(\text{max}(elec_{i-1}))}$
 
-- elec: 전력기상지수 
-- sum_qctr: 계약전력합계
-- n: 공동주택 수
-- sum_load: 전력수요 합계 
-- n_mean_load: 전력부하량 평균 
+- elec : 전력기상지수 
+- sum_qctr : 계약전력합계        = 해당격자의 전력통계 산출에 포함된 공동주택의 계약전력 합계 
+- n : 공동주택 수                = 해당격자의 전력통계 산출에 포함된 공동주택의 수, 단위(단자)
+- sum_load : 전력수요 합계       = 해당격자/시각에 측정된 공동주택의 전력수요 합계 
+- n_mean_load : 전력부하량 평균  = 격자내 총 전력부하량을 아파트 수로 나누어 격자의 평균 부하량을 산출
+
+$ \text{n\_mean\_load} = \text{sum\_load} \div \text{n}$
 
 ### **검증 데이터**
 **검증 데이터**는 전력기상지수를 산출할 수 있는 변수인 sum_qctr(계약전력합계), n(공동주택 수), sum_load(전력수요 합계), n_mean_load(전력부하량 평균)를 제외하고 제공 
 
-$\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_j}$
+$\text{elec}_{i} = \frac{\text{(sum load)}_{i}}{\text{(n mean load)}_j}$
 
+
+즉, elec(전력기상지수, 예측대상)를 구하려면, 해당격자의 해당시간 전력 수요(sum_load)를 알아야하고, 해당년도의 전체 시간 평균 전력 수요를 알아야 한다
 
 ## **목표**
 공동주택 전력수요 예측 
@@ -608,7 +611,10 @@ $\text{elec}_{i} = \frac{\text{(sum load)}_i}{\text{(n mean load)}_j}$
 
 ```python
 df_train = df[df['electric_train.tm'] < '2023-01-01']
-df_val = df[df['electric_train.tm'] >= '2023-01-01'].drop(['electric_train.sum_qctr', 'electric_train.n', 'electric_train.sum_load', 'electric_train.n_mean_load'], axis=1)
+
+targets = ['electric_train.sum_qctr', 'electric_train.n', 'electric_train.sum_load', 'electric_train.n_mean_load']
+
+df_val = df[df['electric_train.tm'] >= '2023-01-01'].drop(targets, axis=1)
 # df_val는 다른 features에서 계산을 통해 구한 후 채워넣야 할듯? <-- 훈련 데이터에서는 사용하기 때문 (내 생각.....)
 ```
 
